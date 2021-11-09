@@ -1,0 +1,48 @@
+Splunk SOAR AWS CloudTrail
+Copyright 2021 Splunk Inc.
+
+Third-party Software Attributions:
+
+Library: jmespath
+Version: 0.9.3
+License: MIT
+Amazon.com
+
+Library: s3transfer
+Version: 0.2.0
+License: Apache 2.0
+Unknown copyright
+
+Library: six
+Version: 1.15.0
+License: MIT
+Copyright 2010-2020 Benjamin Peterson
+
+Library: pudb
+Version: 2019.2
+License: MIT
+Copyright 2009 Andreas Kloeckner and contributors
+
+Library: requests
+Version: 2.25.0
+License: Apache 2.0
+Kenneth Reitz
+
+Library: botocore
+Version: 1.20.6
+License: Apache 2.0
+Unknown copyright
+
+Library: boto3
+Version: 1.17.6
+License: Apache 2.0
+Unknown copyright
+
+Library: docutils
+Version: 0.17.1
+License: Python 2.0
+License: GPL 3.0
+License: BSD 2
+License: Public Domain
+Copyright 2004-2007 Chad Miller
+Copyright 2011 Günter Milde,
