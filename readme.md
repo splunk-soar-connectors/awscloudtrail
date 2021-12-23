@@ -2,7 +2,7 @@
 # AWS CloudTrail
 
 Publisher: Splunk  
-Connector Version: 2\.2\.2  
+Connector Version: 2\.2\.5  
 Product Vendor: AWS  
 Product Name: CloudTrail  
 Product Version Supported (regex): "\.\*"  
@@ -12,6 +12,9 @@ This app integrates with AWS CloudTrail to perform various investigative actions
 
 [comment]: # " File: readme.md"
 [comment]: # "  Copyright (c) 2018-2021 Splunk Inc."
+[comment]: # ""
+[comment]: # "  SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part"
+[comment]: # "  without a valid written license from Splunk Inc. is PROHIBITED."
 [comment]: # ""
 ## Asset Configuration
 
