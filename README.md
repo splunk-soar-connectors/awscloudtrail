@@ -11,7 +11,7 @@ Minimum Product Version: 4.9.39220
 This app integrates with AWS CloudTrail to perform various investigative actions
 
 [comment]: # " File: README.md"
-[comment]: # "  Copyright (c) 2018-2021 Splunk Inc."
+[comment]: # "  Copyright (c) 2018-2023 Splunk Inc."
 [comment]: # ""
 [comment]: # "  SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part"
 [comment]: # "  without a valid written license from Splunk Inc. is PROHIBITED."
