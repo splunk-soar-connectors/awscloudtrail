@@ -1,5 +1,5 @@
 Splunk SOAR AWS CloudTrail
-Copyright (c) 2019-2021 Splunk Inc.
+Copyright (c) 2019-2023 Splunk Inc.
 
 Third-party Software Attributions:
 
@@ -24,11 +24,6 @@ License: Public Domain
 License: Python 2.0
 Copyright 2004-2007 Chad Miller
 Copyright 2011 Günter Milde,
-
-Library: requests
-Version: 2.25.0
-License: Apache 2.0
-Kenneth Reitz
 
 Library: six
 Version: 1.15.0
