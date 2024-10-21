@@ -10,7 +10,7 @@
     "product_version_regex": ".*",
     "python_version": "3",
     "publisher": "Splunk",
-    "license": "Copyright (c) 2019-2023 Splunk Inc.",
+    "license": "Copyright (c) 2019-2024 Splunk Inc.",
     "app_version": "2.2.7",
     "utctime_updated": "2022-01-07T20:23:12.000000Z",
     "package_name": "phantom_awscloudtrail",
