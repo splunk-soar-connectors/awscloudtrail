@@ -35,11 +35,8 @@ AWS_CLOUDTRAIL_REGIONS = {
     "Middle East (Bahrain)": "me-south-1",
     "AWS GovCloud (US-East)": "us-gov-east-1",
     "AWS GovCloud (US-West)": "us-gov-west-1",
-    "South America (São Paulo)": "sa-east-1"
+    "South America (São Paulo)": "sa-east-1",
 }
-AWSCLOUDTRAIL_DICT_MAP = {
-            'describe_trails': 'trailList',
-            'lookup_events': 'Events'
-        }
-AWSCLOUDTRAIL_INVALID_LIMIT = 'Please provide a non-zero positive integer in the max_results'
-AWSCLOUDTRAIL_BAD_ASSET_CONFIG_MSG = 'Please provide access keys or select assume role check box in asset configuration'
+AWSCLOUDTRAIL_DICT_MAP = {"describe_trails": "trailList", "lookup_events": "Events"}
+AWSCLOUDTRAIL_INVALID_LIMIT = "Please provide a non-zero positive integer in the max_results"
+AWSCLOUDTRAIL_BAD_ASSET_CONFIG_MSG = "Please provide access keys or select assume role check box in asset configuration"
