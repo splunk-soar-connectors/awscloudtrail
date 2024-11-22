@@ -6,7 +6,7 @@ Connector Version: 2.2.7
 Product Vendor: AWS  
 Product Name: CloudTrail  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 6.2.2  
+Minimum Product Version: 6.3.0  
 
 This app integrates with AWS CloudTrail to perform various investigative actions
 
