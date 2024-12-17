@@ -2,7 +2,7 @@
 # AWS CloudTrail
 
 Publisher: Splunk  
-Connector Version: 2.2.7  
+Connector Version: 2.2.8  
 Product Vendor: AWS  
 Product Name: CloudTrail  
 Product Version Supported (regex): ".\*"  
@@ -38,8 +38,8 @@ actions within a playbook. For more information, please see the [AWS Identity an
 documentation](https://docs.aws.amazon.com/iam/index.html) .
 
 
-### Configuration Variables
-The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a CloudTrail asset in SOAR.
+### Configuration variables
+This table lists the configuration variables required to operate AWS CloudTrail. These variables are specified when configuring a CloudTrail asset in Splunk SOAR.
 
 VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
