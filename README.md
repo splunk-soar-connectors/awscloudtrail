@@ -38,8 +38,8 @@ actions within a playbook. For more information, please see the [AWS Identity an
 documentation](https://docs.aws.amazon.com/iam/index.html) .
 
 
-### Configuration variables
-This table lists the configuration variables required to operate AWS CloudTrail. These variables are specified when configuring a CloudTrail asset in Splunk SOAR.
+### Configuration Variables
+The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a CloudTrail asset in SOAR.
 
 VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
