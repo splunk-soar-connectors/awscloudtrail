@@ -10,7 +10,7 @@
     "product_version_regex": ".*",
     "python_version": "3",
     "publisher": "Splunk",
-    "license": "Copyright (c) 2019-2024 Splunk Inc.",
+    "license": "Copyright (c) 2019-2025 Splunk Inc.",
     "app_version": "2.2.8",
     "utctime_updated": "2024-12-17T14:45:31.000000Z",
     "package_name": "phantom_awscloudtrail",
@@ -77,11 +77,11 @@
         "wheel": [
             {
                 "module": "boto3",
-                "input_file": "wheels/shared/boto3-1.17.6-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/boto3-1.28.77-py2.py3-none-any.whl"
             },
             {
                 "module": "botocore",
-                "input_file": "wheels/shared/botocore-1.20.30-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/botocore-1.39.11-py3-none-any.whl"
             },
             {
                 "module": "docutils",

@@ -1,6 +1,6 @@
 # File: awscloudtrail_connector.py
 #
-# Copyright (c) 2019-2024 Splunk Inc.
+# Copyright (c) 2019-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,10 +35,8 @@ class RetVal(tuple):
 
 
 class AwsCloudtrailConnector(BaseConnector):
-
     def __init__(self):
-
-        super(AwsCloudtrailConnector, self).__init__()
+        super().__init__()
         self._state = None
         self._access_key = None
         self._secret_key = None
@@ -47,13 +45,11 @@ class AwsCloudtrailConnector(BaseConnector):
         self._proxy = None
 
     def _handle_get_ec2_role(self):
-
         session = Session(region_name=self._region)
         credentials = session.get_credentials()
         return credentials
 
     def _create_client(self, action_result, param=None):
-
         boto_config = None
         if self._proxy:
             boto_config = Config(proxies=self._proxy)
@@ -69,7 +65,7 @@ class AwsCloudtrailConnector(BaseConnector):
 
                 self.save_progress("Using temporary assume role ceredentials for action")
             except Exception as e:
-                return action_result.set_status(phantom.APP_ERROR, "Failed to get temporary credentials:{0}".format(e))
+                return action_result.set_status(phantom.APP_ERROR, f"Failed to get temporary credentials:{e}")
 
         try:
             if self._access_key and self._secret_key:
@@ -86,7 +82,7 @@ class AwsCloudtrailConnector(BaseConnector):
                 self.debug_print("Creating boto3 client without API keys")
                 self._client = client("cloudtrail", region_name=self._region, config=boto_config)
         except Exception as e:
-            return action_result.set_status(phantom.APP_ERROR, "Could not create boto3 client: {0}".format(e))
+            return action_result.set_status(phantom.APP_ERROR, f"Could not create boto3 client: {e}")
 
         return phantom.APP_SUCCESS
 
@@ -101,7 +97,7 @@ class AwsCloudtrailConnector(BaseConnector):
             boto_func = getattr(self._client, method)
             can_paginate = self._client.can_paginate(boto_func.__name__)
         except AttributeError:
-            return RetVal(action_result.set_status(phantom.APP_ERROR, "Invalid method: {}".format(method)))
+            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Invalid method: {method}"))
 
         set_name = AWSCLOUDTRAIL_DICT_MAP.get(method)
         updated_list = []
@@ -133,19 +129,18 @@ class AwsCloudtrailConnector(BaseConnector):
             return phantom.APP_SUCCESS, self._sanitize_data(updated_list)
 
     def _process_json_response(self, r, action_result):
-
         # Try a json parse
         try:
             resp_json = r.json()
         except Exception as e:
-            return RetVal(action_result.set_status(phantom.APP_ERROR, "Unable to parse JSON response. Error: {0}".format(str(e))), None)
+            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Unable to parse JSON response. Error: {e!s}"), None)
 
         # Please specify the status codes here
         if 200 <= r.status_code < 399:
             return RetVal(phantom.APP_SUCCESS, resp_json)
 
         # You should process the error returned in the json
-        message = "Error from server. Status Code: {0} Data from server: {1}".format(r.status_code, r.text.replace("{", "{{").replace("}", "}}"))
+        message = "Error from server. Status Code: {} Data from server: {}".format(r.status_code, r.text.replace("{", "{{").replace("}", "}}"))
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
 
@@ -184,7 +179,6 @@ class AwsCloudtrailConnector(BaseConnector):
         return list_items
 
     def _handle_test_connectivity(self, param):
-
         # Add an action result object to self (BaseConnector) to represent the action for this param
         action_result = self.add_action_result(ActionResult(dict(param)))
         self.save_progress("Querying AWS to validate credentials")
@@ -202,8 +196,7 @@ class AwsCloudtrailConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_describe_trails(self, param):
-
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
         action_result = self.add_action_result(ActionResult(dict(param)))
 
         include_shadow_trails = param.get("include_shadow_trails", False)
@@ -225,13 +218,12 @@ class AwsCloudtrailConnector(BaseConnector):
 
         # Add a dictionary that is made up of the most important values from data into the summary
         summary = action_result.update_summary({})
-        summary["message"] = "Received {} trails".format(action_result.get_data_size())
+        summary["message"] = f"Received {action_result.get_data_size()} trails"
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_run_query(self, param):
-
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
         action_result = self.add_action_result(ActionResult(dict(param)))
 
         attribute_key = param.get("attribute_key", "")
@@ -278,7 +270,6 @@ class AwsCloudtrailConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def handle_action(self, param):
-
         ret_val = phantom.APP_SUCCESS
 
         # Get the action that we are supposed to execute for this App Run
@@ -296,7 +287,6 @@ class AwsCloudtrailConnector(BaseConnector):
         return ret_val
 
     def _sanitize_data(self, cur_obj):
-
         try:
             json.dumps(cur_obj)
             return cur_obj
@@ -334,7 +324,6 @@ class AwsCloudtrailConnector(BaseConnector):
         return cur_obj
 
     def initialize(self):
-
         # Load the state in initialize, use it to store data
         # that needs to be accessed across actions
         self._state = self.load_state()
@@ -372,14 +361,12 @@ class AwsCloudtrailConnector(BaseConnector):
         return phantom.APP_SUCCESS
 
     def finalize(self):
-
         # Save the state, this data is saved across actions and app upgrades
         self.save_state(self._state)
         return phantom.APP_SUCCESS
 
 
 if __name__ == "__main__":
-
     import argparse
 
     import pudb
