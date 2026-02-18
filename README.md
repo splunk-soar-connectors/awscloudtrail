@@ -1,7 +1,7 @@
 # AWS CloudTrail
 
 Publisher: Splunk <br>
-Connector Version: 2.2.8 <br>
+Connector Version: 2.2.9 <br>
 Product Vendor: AWS <br>
 Product Name: CloudTrail <br>
 Minimum Product Version: 6.3.0
