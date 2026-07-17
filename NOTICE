@@ -1,5 +1,5 @@
 Splunk SOAR App: AWS CloudTrail
-Copyright (c) 2019-2025 Splunk Inc.
+Copyright (c) 2019-2026 Splunk Inc.
 Third Party Software Attributions:
 
 @@@@============================================================================
@@ -600,4 +600,3 @@ licenses_ directory.
 .. _OSI-approved: http://opensource.org/licenses/
 .. _license-list:
 .. _GPL-compatible: https://www.gnu.org/licenses/license-list.html
-
