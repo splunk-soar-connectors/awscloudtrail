@@ -1,6 +1,6 @@
 # File: awscloudtrail_consts.py
 #
-# Copyright (c) 2019-2025 Splunk Inc.
+# Copyright (c) 2019-2026 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -38,5 +38,8 @@ AWS_CLOUDTRAIL_REGIONS = {
     "South America (São Paulo)": "sa-east-1",
 }
 AWSCLOUDTRAIL_DICT_MAP = {"describe_trails": "trailList", "lookup_events": "Events"}
+AWSCLOUDTRAIL_MAX_PAGES = 1000
 AWSCLOUDTRAIL_INVALID_LIMIT = "Please provide a non-zero positive integer in the max_results"
+AWSCLOUDTRAIL_PAGINATION_LIMIT = "CloudTrail pagination exceeded the maximum page count"
+AWSCLOUDTRAIL_REPEATED_TOKEN = "CloudTrail returned a repeated pagination token"
 AWSCLOUDTRAIL_BAD_ASSET_CONFIG_MSG = "Please provide access keys or select assume role check box in asset configuration"

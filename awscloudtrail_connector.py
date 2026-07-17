@@ -1,6 +1,6 @@
 # File: awscloudtrail_connector.py
 #
-# Copyright (c) 2019-2025 Splunk Inc.
+# Copyright (c) 2019-2026 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -154,6 +154,8 @@ class AwsCloudtrailConnector(BaseConnector):
         """
         list_items = list()
         next_token = None
+        seen_tokens = set()
+        page_count = 0
 
         while True:
             if next_token:
@@ -164,9 +166,16 @@ class AwsCloudtrailConnector(BaseConnector):
             if phantom.is_fail(ret_val):
                 return None
 
+            page_count += 1
+            next_token = None
             if response is not None:
-                if response.get("next_token"):
-                    next_token = response.get("next_token")
+                response_token = response.get("next_token")
+                if response_token:
+                    if response_token in seen_tokens:
+                        action_result.set_status(phantom.APP_ERROR, AWSCLOUDTRAIL_REPEATED_TOKEN)
+                        return None
+                    seen_tokens.add(response_token)
+                    next_token = response_token
                 if response.get("response_list"):
                     list_items.extend(response.get("response_list"))
 
@@ -175,6 +184,10 @@ class AwsCloudtrailConnector(BaseConnector):
 
             if not next_token:
                 break
+
+            if page_count >= AWSCLOUDTRAIL_MAX_PAGES:
+                action_result.set_status(phantom.APP_ERROR, AWSCLOUDTRAIL_PAGINATION_LIMIT)
+                return None
 
         return list_items
 
@@ -186,7 +199,7 @@ class AwsCloudtrailConnector(BaseConnector):
         if not self._create_client(action_result, param):
             return action_result.get_status()
 
-        ret_val, resp = self._make_boto_call(action_result, "describe_trails", includeShadowTrails=False)
+        ret_val, _resp = self._make_boto_call(action_result, "describe_trails", includeShadowTrails=False)
 
         if phantom.is_fail(ret_val):
             self.save_progress("Test Connectivity Failed")
@@ -232,8 +245,9 @@ class AwsCloudtrailConnector(BaseConnector):
         end_date = param.get("end_date", "")
         limit = param.get("max_results", 50)
 
-        if (limit and not str(limit).isdigit()) or limit == 0:
+        if not str(limit).isdigit() or int(limit) <= 0:
             return action_result.set_status(phantom.APP_ERROR, AWSCLOUDTRAIL_INVALID_LIMIT)
+        limit = int(limit)
 
         # fail if we're not able to create a client
         if not self._create_client(action_result, param):
