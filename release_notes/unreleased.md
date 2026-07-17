@@ -1,1 +1,3 @@
 **Unreleased**
+
+* Bound CloudTrail pagination, reject repeated tokens, and normalize positive result limits.
