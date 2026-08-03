@@ -96,7 +96,6 @@ action_result.summary.message | string | | Received 3 trails |
 action_result.message | string | | Message: Received 3 trails |
 summary.total_objects | numeric | | 1 |
 summary.total_objects_successful | numeric | | 1 |
-action_result.parameter.credentials | password | `aws credentials` | |
 
 ## action: 'run query'
 
@@ -250,7 +249,6 @@ action_result.summary.total_lookup_events | numeric | | 123 |
 action_result.message | string | | Total lookup events: 123 |
 summary.total_objects | numeric | | 1 |
 summary.total_objects_successful | numeric | | 1 |
-action_result.parameter.credentials | password | `aws credentials` | |
 
 ______________________________________________________________________
 
