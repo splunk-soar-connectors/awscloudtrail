@@ -73,7 +73,7 @@ Read only: **True**
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
 **include_shadow_trails** | optional | Inform command to include shadow trails | boolean | |
-**credentials** | optional | Assumed role credentials | string | `aws credentials` |
+**credentials** | optional | Assumed role credentials | password | `aws credentials` |
 
 #### Action Output
 
@@ -96,7 +96,6 @@ action_result.summary.message | string | | Received 3 trails |
 action_result.message | string | | Message: Received 3 trails |
 summary.total_objects | numeric | | 1 |
 summary.total_objects_successful | numeric | | 1 |
-action_result.parameter.credentials | string | `aws credentials` | {'AccessKeyId': 'REDACTED', 'Expiration': '2021-06-07 22:28:04', 'SecretAccessKey': 'REDACTED', 'SessionToken': 'REDACTED'} |
 
 ## action: 'run query'
 
@@ -114,7 +113,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 **start_date** | optional | Start date in the format of yyyy-mm-dd (e.g. 2019-12-25) | string | |
 **end_date** | optional | End date in the format of yyyy-mm-dd (e.g. 2019-12-25) | string | |
 **max_results** | optional | Max results to return | numeric | |
-**credentials** | optional | Assumed role credentials | string | `aws credentials` |
+**credentials** | optional | Assumed role credentials | password | `aws credentials` |
 
 #### Action Output
 
@@ -250,7 +249,6 @@ action_result.summary.total_lookup_events | numeric | | 123 |
 action_result.message | string | | Total lookup events: 123 |
 summary.total_objects | numeric | | 1 |
 summary.total_objects_successful | numeric | | 1 |
-action_result.parameter.credentials | string | `aws credentials` | {'AccessKeyId': 'REDACTED', 'Expiration': '2021-06-07 22:28:04', 'SecretAccessKey': 'REDACTED', 'SessionToken': 'REDACTED'} |
 
 ______________________________________________________________________
 

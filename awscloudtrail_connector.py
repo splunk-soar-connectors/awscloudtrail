@@ -44,6 +44,10 @@ class AwsCloudtrailConnector(BaseConnector):
         self._region = None
         self._proxy = None
 
+    @staticmethod
+    def _sanitize_action_parameters(param):
+        return {key: value for key, value in param.items() if key != "credentials"}
+
     def _handle_get_ec2_role(self):
         session = Session(region_name=self._region)
         credentials = session.get_credentials()
@@ -193,7 +197,7 @@ class AwsCloudtrailConnector(BaseConnector):
 
     def _handle_test_connectivity(self, param):
         # Add an action result object to self (BaseConnector) to represent the action for this param
-        action_result = self.add_action_result(ActionResult(dict(param)))
+        action_result = self.add_action_result(ActionResult(self._sanitize_action_parameters(param)))
         self.save_progress("Querying AWS to validate credentials")
 
         if not self._create_client(action_result, param):
@@ -210,7 +214,7 @@ class AwsCloudtrailConnector(BaseConnector):
 
     def _handle_describe_trails(self, param):
         self.save_progress(f"In action handler for: {self.get_action_identifier()}")
-        action_result = self.add_action_result(ActionResult(dict(param)))
+        action_result = self.add_action_result(ActionResult(self._sanitize_action_parameters(param)))
 
         include_shadow_trails = param.get("include_shadow_trails", False)
 
@@ -237,7 +241,7 @@ class AwsCloudtrailConnector(BaseConnector):
 
     def _handle_run_query(self, param):
         self.save_progress(f"In action handler for: {self.get_action_identifier()}")
-        action_result = self.add_action_result(ActionResult(dict(param)))
+        action_result = self.add_action_result(ActionResult(self._sanitize_action_parameters(param)))
 
         attribute_key = param.get("attribute_key", "")
         attribute_value = param.get("attribute_value", "")
